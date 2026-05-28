@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultimate Birthday Surprise</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+   body{
+  font-family:'Poppins',sans-serif;
+  background: 
+    linear-gradient(rgba(255,182,193,0.15), rgba(255,105,180,0.15)),
+    url("bdyimg.png") no-repeat center center fixed;
+  background-size: cover;
+  min-height:100vh;
+  width:100%;
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+  position:relative;
+}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:linear-gradient(135deg,rgba(255,105,180,0.15),rgba(255,255,255,0.08));
+      backdrop-filter:blur(2px);
+      z-index:0;
+    }
+
+    /* Floating balloons */
+    .balloon{
+      position:fixed;
+      bottom:-120px;
+      font-size:3rem;
+      animation:floatUp linear infinite;
+      z-index:2;
+      opacity:0.9;
+    }
+
+    @keyframes floatUp{
+      from{
+        transform:translateY(0) rotate(0deg);
+      }
+      to{
+        transform:translateY(-130vh) rotate(20deg);
+      }
+    }
+
+    /* Sparkles */
+    .sparkle{
+      position:fixed;
+      top:-20px;
+      font-size:1.5rem;
+      animation:sparkleFall linear infinite;
+      opacity:0.9;
+      z-index:2;
+    }
+
+    @keyframes sparkleFall{
+      from{
+        transform:translateY(0);
+      }
+      to{
+        transform:translateY(120vh);
+      }
+    }
+
+    .top-bar{
+      display:flex;
+      justify-content:flex-end;
+      padding:20px;
+      position:relative;
+      z-index:5;
+    }
+
+    .send-btn{
+      padding:14px 30px;
+      border:none;
+      border-radius:50px;
+      background:linear-gradient(45deg,#ff4fa3,#ff7eb3,#ff4d88);
+      color:white;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      box-shadow:0 8px 25px rgba(255,20,147,0.4);
+      transition:0.3s;
+      border:2px solid rgba(255,255,255,0.4);
+    }
+
+    .send-btn:hover{
+      transform:scale(1.08);
+    }
+
+    .hero{
+      padding:20px 20px 30px;
+      position:relative;
+      z-index:5;
+    }
+
+    /* ONLY FIRST LINE GLOW */
+    .hero h1{
+      font-size:3.4rem;
+      font-weight:800;
+      color:#ffffff;
+      text-shadow:0 0 10px rgba(255,255,255,0.9),
+                  0 0 25px rgba(255,20,147,0.8);
+      animation:glow 2s infinite alternate;
+    }
+
+    /* SECOND LINE NORMAL PREMIUM */
+    .hero h2{
+      font-family:'Great Vibes',cursive;
+      font-size:3.5rem;
+      color:#fff4c2;
+      margin-top:10px;
+      text-shadow:0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    @keyframes glow{
+      from{
+        text-shadow:0 0 10px #fff,0 0 20px #ff69b4;
+      }
+      to{
+        text-shadow:0 0 20px #fff,0 0 35px deeppink;
+      }
+    }
+
+    .container{
+      width:95%;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1fr 2fr 1fr;
+      gap:25px;
+      padding-bottom:30px;
+      position:relative;
+      z-index:5;
+    }
+
+    .side-panel,
+    .center-panel{
+      background:rgba(255,255,255,0.18);
+      backdrop-filter:blur(16px);
+      border-radius:35px;
+      box-shadow:0 15px 35px rgba(255,20,147,0.25);
+      padding:20px;
+      border:3px solid rgba(255,255,255,0.35);
+    }
+
+    .side-panel img{
+      width:100%;
+      min-height:550px;
+      object-fit:cover;
+      border-radius:20px;
+      border:5px solid rgba(255,255,255,0.5);
+      box-shadow:0 0 20px rgba(255,192,203,0.4);
+    }
+
+    .upload-box{
+      margin-top:15px;
+    }
+
+    .upload-box input{
+      width:100%;
+      padding:12px;
+      border-radius:30px;
+      border:none;
+      background:rgba(255,240,245,0.9);
+      color:#c2185b;
+      font-weight:700;
+    }
+
+    .center-panel{
+      min-height:780px;
+    }
+
+    input[type="text"]{
+      width:80%;
+      padding:18px;
+      border:none;
+      border-radius:50px;
+      text-align:center;
+      font-size:1rem;
+      margin-top:20px;
+      outline:none;
+      background:rgba(255,255,255,0.85);
+      color:#ff1493;
+      font-weight:700;
+      box-shadow:0 0 15px rgba(255,255,255,0.4);
+    }
+
+    button{
+      margin-top:20px;
+      padding:15px 35px;
+      border:none;
+      border-radius:50px;
+      background:linear-gradient(45deg,#ff4fa3,#ff4b8b,#ff1493);
+      color:white;
+      font-size:1rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 10px 25px rgba(255,20,147,0.35);
+    }
+
+    button:hover{
+      transform:scale(1.05);
+    }
+
+    .welcome-box{
+      margin-top:30px;
+      background:rgba(255,255,255,0.14);
+      padding:30px;
+      border-radius:25px;
+      border:2px solid rgba(255,255,255,0.25);
+    }
+
+    .welcome-box h3{
+      font-size:2rem;
+      margin-bottom:15px;
+      text-shadow:0 0 10px rgba(255,255,255,0.4);
+    }
+
+    #greetingText{
+      margin-top:25px;
+      font-size:2rem;
+      line-height:1.8;
+      text-shadow:0 0 12px rgba(255,255,255,0.3);
+    }
+
+    .gift-sections{
+      display:none;
+      margin-top:30px;
+      animation:fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+
+    .cake-box,.aim-box{
+      padding:25px;
+      border-radius:25px;
+      margin-bottom:25px;
+    }
+
+    .cake-box{
+      background:rgba(255,255,255,0.9);
+      color:#ff1493;
+    }
+
+    .cake{
+      font-size:100px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .cake:hover{
+      transform:scale(1.15);
+    }
+
+    .aim-box{
+      background:rgba(255,255,255,0.18);
+    }
+
+    #aimResult{
+      margin-top:25px;
+      font-size:2.2rem;
+      font-weight:800;
+      min-height:140px;
+      line-height:1.8;
+      color:#fff700;
+      text-shadow:0 0 15px rgba(0,0,0,0.4);
+    }
+
+    .footer{
+      padding:25px;
+      background:rgba(255,182,193,0.18);
+      position:relative;
+      z-index:5;
+      font-size:1.4rem;
+      font-weight:700;
+      text-shadow:0 0 12px rgba(255,255,255,0.5);
+    }
+
+    @media(max-width:950px){
+      .container{
+        grid-template-columns:1fr;
+      }
+
+      .hero h1{
+        font-size:2rem;
+      }
+
+      .hero h2{
+        font-size:2.2rem;
+      }
+
+      .side-panel img{
+        min-height:300px;
+      }
+
+      input[type="text"]{
+        width:95%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Balloons -->
+<div class="balloon" style="left:5%; animation-duration:9s;">🎈</div>
+<div class="balloon" style="left:15%; animation-duration:12s;">🎈</div>
+<div class="balloon" style="left:30%; animation-duration:10s;">🎈</div>
+<div class="balloon" style="left:45%; animation-duration:13s;">🎈</div>
+<div class="balloon" style="left:60%; animation-duration:11s;">🎈</div>
+<div class="balloon" style="left:75%; animation-duration:14s;">🎈</div>
+<div class="balloon" style="left:90%; animation-duration:10s;">🎈</div>
+
+<!-- Sparkles -->
+<div class="sparkle" style="left:10%; animation-duration:8s;">✨</div>
+<div class="sparkle" style="left:35%; animation-duration:10s;">💖</div>
+<div class="sparkle" style="left:55%; animation-duration:9s;">✨</div>
+<div class="sparkle" style="left:80%; animation-duration:11s;">💫</div>
+
+<div class="top-bar">
+  <a href="sender.html" class="send-btn">🎁 Send To B'day Person</a>
+</div>
+
+<section class="hero">
+  <h1>🎉 Wish You Many More Happy Returns of The Day 🎉</h1>
+  <h2>👑 Happiest Birthday To You 👑</h2>
+</section>
+
+<div class="container">
+
+  <!-- Left -->
+  <div class="side-panel">
+    <img id="leftImage" src="" alt="Left Birthday">
+    <div class="upload-box">
+      <input type="file" id="leftUpload" accept="image/*">
+    </div>
+  </div>
+
+  <!-- Center -->
+  <div class="center-panel">
+
+    <input type="text" id="nameInput" placeholder="✨ Enter Your Beautiful Name ✨">
+    <br>
+    <button onclick="showGreeting()">🎀 ENTER YOUR NAME 🎀</button>
+
+    <div class="welcome-box" id="welcomeBox">
+      <h3>🎀 Your Special Day Starts Here 🎀</h3>
+      <p>Enter your beautiful name to unlock your premium birthday journey, magical cake cutting, and your dream wish prediction! 💖✨</p>
+    </div>
+
+    <div id="greetingSection" style="display:none;">
+      <h3 id="greetingText"></h3>
+      <button onclick="openGift()">🎁 Open Your Gift 🎁</button>
+    </div>
+
+    <div id="giftSections" class="gift-sections">
+
+      <div class="cake-box">
+        <h2>🎂 Cut Your Birthday Cake 🎂</h2>
+        <div class="cake" onclick="cutCake()" id="cakeEmoji">🎂</div>
+        <div id="cakeMessage">Click the cake to cut it ✨</div>
+      </div>
+
+      <div class="aim-box">
+        <h2>🌟 Enter Your Wish 🌟</h2>
+        <input type="text" id="aimInput" placeholder="Enter your beautiful wish">
+        <br>
+        <button onclick="predictAim()">💫 CHECK YOUR WISH 💫</button>
+        <div id="aimResult"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Right -->
+  <div class="side-panel">
+    <img id="rightImage" src="" alt="Right Birthday">
+    <div class="upload-box">
+      <input type="file" id="rightUpload" accept="image/*">
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <h3>💖 Thank You For Visiting 💖</h3><br>
+  <h5>CONTACT : ikpandi22@gmail.com</h5>
+</div>
+
+<script>
+function handleImageUpload(inputId,imageId,storageKey){
+  document.getElementById(inputId).addEventListener("change", function(e){
+    const file = e.target.files[0];
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(){
+      const imageData = reader.result;
+      document.getElementById(imageId).src = imageData;
+      localStorage.setItem(storageKey,imageData);
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+handleImageUpload("leftUpload","leftImage","birthdayLeftImage");
+handleImageUpload("rightUpload","rightImage","birthdayRightImage");
+
+window.onload = function(){
+  let leftSaved = localStorage.getItem("birthdayLeftImage");
+  let rightSaved = localStorage.getItem("birthdayRightImage");
+
+  if(leftSaved){
+    document.getElementById("leftImage").src = leftSaved;
+  }
+
+  if(rightSaved){
+    document.getElementById("rightImage").src = rightSaved;
+  }
+};
+
+function showGreeting(){
+  let name = document.getElementById("nameInput").value;
+
+  if(name.trim()===""){
+    alert("Please enter your name!");
+    return;
+  }
+
+  document.getElementById("welcomeBox").style.display="none";
+  document.getElementById("greetingSection").style.display="block";
+
+  document.getElementById("greetingText").innerHTML =
+    "🎉 Hi " + name + " 💖<br>Today is your magical birthday journey!<br>Click below to unlock your surprise 🎁";
+}
+
+function openGift(){
+  document.getElementById("giftSections").style.display="block";
+}
+
+function cutCake(){
+  document.getElementById("cakeEmoji").innerHTML="🍰";
+  document.getElementById("cakeMessage").innerHTML="🎉 Cake Cut Successfully! Happy Birthday Superstar! 🎉";
+}
+
+function predictAim(){
+  let aim = document.getElementById("aimInput").value;
+
+  if(aim.trim()===""){
+    alert("Please enter your wish!");
+    return;
+  }
+
+  let result = document.getElementById("aimResult");
+  let count = 0;
+
+  result.innerHTML = "";
+
+  let interval = setInterval(() => {
+
+    if(count % 2 === 0){
+      result.innerHTML = `
+        <span style="color:#ff3333;">NOT POSSIBLE</span>
+        &nbsp;&nbsp;&nbsp;
+        <span style="color:#00ff66;">POSSIBLE</span>
+      `;
+    } else {
+      result.innerHTML = `
+        <span style="color:#00ff66;">POSSIBLE</span>
+        &nbsp;&nbsp;&nbsp;
+        <span style="color:#ff3333;">NOT POSSIBLE</span>
+      `;
+    }
+
+    count++;
+
+    if(count > 8){
+      clearInterval(interval);
+
+      setTimeout(() => {
+        result.innerHTML = `
+          🎯 Your Wish: ${aim}<br><br>
+          🌟 FINAL RESULT: POSSIBLE 🌟<br><br>
+          🔥 SUCCESS 🔥
+        `;
+      },1000);
+    }
+
+  },700);
+}
+</script>
+
+</body>
+</html>
