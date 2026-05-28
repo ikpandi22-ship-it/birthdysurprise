@@ -85,12 +85,105 @@
     .share-box button{
       margin:10px;
     }
+   @media(max-width:768px){
 
-    @media(max-width:768px){
-      .upload-grid{
-        grid-template-columns:1fr;
-      }
-    }
+body{
+padding:15px;
+align-items:flex-start;
+}
+
+.container{
+padding:25px 18px;
+border-radius:25px;
+}
+
+h1{
+font-size:2rem;
+line-height:1.4;
+}
+
+p{
+font-size:1rem;
+line-height:1.6;
+}
+
+.upload-grid{
+grid-template-columns:1fr;
+gap:18px;
+}
+
+.upload-box{
+padding:18px;
+border-radius:18px;
+}
+
+.upload-box h3{
+font-size:1.1rem;
+}
+
+input{
+padding:14px;
+font-size:0.95rem;
+}
+
+img{
+max-height:250px;
+border-radius:12px;
+}
+
+button{
+width:100%;
+padding:15px;
+font-size:1rem;
+}
+
+.share-box{
+margin-top:25px;
+}
+
+.share-box button{
+width:100%;
+margin:10px 0;
+}
+}
+
+@media(max-width:480px){
+
+body{
+padding:10px;
+}
+
+.container{
+padding:20px 15px;
+}
+
+h1{
+font-size:1.6rem;
+}
+
+p{
+font-size:0.95rem;
+}
+
+.upload-box h3{
+font-size:1rem;
+}
+
+input{
+padding:12px;
+}
+
+button{
+font-size:0.95rem;
+padding:14px;
+}
+
+img{
+max-height:220px;
+}
+}
+
+   
   </style>
 </head>
 <body>
